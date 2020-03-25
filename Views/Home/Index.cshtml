@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Lista de Pedidos";
+}
+
+<div class="text-center">
+    @model List<ItemPedido>
+<h2> Listagem dos Itens Cadastrados </h2>
+<table class="table">
+   <thead>
+       <tr>
+           <th>Descrição</th>
+           <th>Quantidade</th>
+           <th>Valor Unitário</th>
+       </tr>
+   </thead>
+   <tbody>
+       @{double total = 0;}
+       @foreach(ItemPedido i in Model)
+       {
+       <tr>
+           <td>@i.descricao</td>
+           <td>@i.quantidade</td>
+           <td>@i.valor_unitario</td>
+           @{
+               total += Convert.ToDouble(i.quantidade) * i.valor_unitario;
+           }
+       </tr>
+       }
+       <tr>
+           <td><strong>TOTAL</strong></td><td colspan="2">@total</td>
+       </tr>
+   </tbody>
+</table>
+</div>
